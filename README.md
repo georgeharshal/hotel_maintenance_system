@@ -102,6 +102,30 @@ password is whatever was set when the site was created
 bench --site <your-site> add-user gm@example.com --first-name "Hotel GM" --add-role "Hotel GM"
 ```
 
+### Demo / Backup Login Credentials
+
+The accompanying site backup is pre-seeded (via
+`hotel_maintenance.demo.seed.create_demo_data`) with the following demo users.
+**All demo users share the password `Hotel@12345`.** Use these to explore the
+role-specific workspaces, dashboards and data isolation.
+
+| Username (login email) | Password | Role | Notes |
+|------------------------|----------|------|-------|
+| `director@hotel.test` | `Hotel@12345` | Director | Full overview, all properties + reports |
+| `sgm@hotel.test` | `Hotel@12345` | Senior General Manager | Oversees all properties |
+| `gm.grand@hotel.test` | `Hotel@12345` | Hotel GM | Manages **Grand Plaza Hotel** (sees only its data) |
+| `gm.bay@hotel.test` | `Hotel@12345` | Hotel GM | Manages **Bayview Resort** (sees only its data) |
+| `tech1@hotel.test` | `Hotel@12345` | Maintenance Employee | Sees only work orders assigned to self |
+| `tech2@hotel.test` | `Hotel@12345` | Maintenance Employee | Sees only work orders assigned to self |
+| `inspector@hotel.test` | `Hotel@12345` | Inspection Team | Logs negative reviews; restricted module access |
+| `Administrator` | *(set at `bench new-site`)* | System Manager | Full system access |
+
+> ⚠️ These are **demo credentials for the reference backup only**. Change or
+> remove them before any production use. The demo data (and these users) can be
+> regenerated with `bench --site <site> execute
+> hotel_maintenance.demo.seed.create_demo_data` or removed with
+> `...seed.clear_demo_data`.
+
 ---
 
 ## Role-based Desk & Data Isolation
