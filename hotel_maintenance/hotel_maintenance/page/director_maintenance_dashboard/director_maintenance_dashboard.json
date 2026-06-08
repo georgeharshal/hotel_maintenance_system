@@ -1,0 +1,20 @@
+{
+ "content": null,
+ "creation": "2026-06-08 00:00:00",
+ "docstatus": 0,
+ "doctype": "Page",
+ "icon": "dashboard",
+ "idx": 0,
+ "modified": "2026-06-08 00:00:00",
+ "module": "Hotel Maintenance",
+ "name": "director-maintenance-dashboard",
+ "owner": "Administrator",
+ "page_name": "director-maintenance-dashboard",
+ "roles": [
+  {"role": "Director"},
+  {"role": "System Manager"}
+ ],
+ "standard": "Yes",
+ "system_page": 0,
+ "title": "Director Maintenance Dashboard"
+}

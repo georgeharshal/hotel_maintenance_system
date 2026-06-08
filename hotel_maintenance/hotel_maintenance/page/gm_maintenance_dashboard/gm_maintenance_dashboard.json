@@ -1,0 +1,22 @@
+{
+ "content": null,
+ "creation": "2026-06-08 00:00:00",
+ "docstatus": 0,
+ "doctype": "Page",
+ "icon": "dashboard",
+ "idx": 0,
+ "modified": "2026-06-08 00:00:00",
+ "module": "Hotel Maintenance",
+ "name": "gm-maintenance-dashboard",
+ "owner": "Administrator",
+ "page_name": "gm-maintenance-dashboard",
+ "roles": [
+  {"role": "Hotel GM"},
+  {"role": "Senior General Manager"},
+  {"role": "Director"},
+  {"role": "System Manager"}
+ ],
+ "standard": "Yes",
+ "system_page": 0,
+ "title": "GM Maintenance Dashboard"
+}
