@@ -1,0 +1,54 @@
+{
+ "actions": [],
+ "creation": "2026-06-08 00:00:00",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "level",
+  "threshold_points",
+  "escalated_on",
+  "notified_to"
+ ],
+ "fields": [
+  {
+   "fieldname": "level",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Level",
+   "options": "Warning\nSGM Review\nDirector Escalation\nManagement Action",
+   "reqd": 1
+  },
+  {
+   "fieldname": "threshold_points",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Threshold Points"
+  },
+  {
+   "fieldname": "escalated_on",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Escalated On"
+  },
+  {
+   "fieldname": "notified_to",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Notified To",
+   "options": "User",
+   "search_index": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-06-08 00:00:00",
+ "module": "Hotel Maintenance",
+ "name": "Escalation Entry",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
