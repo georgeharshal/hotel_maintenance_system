@@ -274,13 +274,27 @@ scheduler_events = {
 	},
 }
 
-# Task 5 - row-level access for Maintenance Employees (assigned-to-self only).
+# Task 5 - row-level access:
+#   Hotel GM        -> only records of properties they manage
+#   Maint. Employee -> only Work Orders assigned to self
 permission_query_conditions = {
+	"Property": "hotel_maintenance.permissions.property_query_conditions",
+	"Building": "hotel_maintenance.permissions.building_query_conditions",
+	"Room": "hotel_maintenance.permissions.room_query_conditions",
+	"Room Asset": "hotel_maintenance.permissions.room_asset_query_conditions",
+	"Maintenance Issue": "hotel_maintenance.permissions.maintenance_issue_query_conditions",
 	"Maintenance Work Order": "hotel_maintenance.permissions.work_order_query_conditions",
+	"Negative Review": "hotel_maintenance.permissions.negative_review_query_conditions",
 }
 
 has_permission = {
+	"Property": "hotel_maintenance.permissions.property_has_permission",
+	"Building": "hotel_maintenance.permissions.building_has_permission",
+	"Room": "hotel_maintenance.permissions.room_has_permission",
+	"Room Asset": "hotel_maintenance.permissions.room_asset_has_permission",
+	"Maintenance Issue": "hotel_maintenance.permissions.maintenance_issue_has_permission",
 	"Maintenance Work Order": "hotel_maintenance.permissions.work_order_has_permission",
+	"Negative Review": "hotel_maintenance.permissions.negative_review_has_permission",
 }
 
 

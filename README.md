@@ -92,9 +92,38 @@ password is whatever was set when the site was created
 bench --site <your-site> add-user gm@example.com --first-name "Hotel GM" --add-role "Hotel GM"
 ```
 
-Row-level access for *Maintenance Employee* is implemented in
-`hotel_maintenance/permissions.py` (a `permission_query_conditions` +
-`has_permission` pair on **Maintenance Work Order**).
+---
+
+## Role-based Desk & Data Isolation
+
+Each role gets its **own workspace** (sidebar entry + icon), its **own number
+cards/charts**, and only the **data it is concerned with**.
+
+**Workspaces** (created idempotently by `setup/workspaces.py` on install/migrate;
+each restricted via its `roles`):
+
+| Workspace | Role | Highlights |
+|-----------|------|------------|
+| Maintenance Director | Director | 4 KPI number cards, 3 charts, Director Dashboard + all reports, all records |
+| Senior Manager Maintenance | Senior General Manager | KPI cards, status charts, reports |
+| Hotel GM Workspace | Hotel GM | scoped KPI cards, GM Dashboard, own-property records |
+| Maintenance Tasks | Maintenance Employee | open/completed work-order cards, assigned work orders |
+| Inspection | Inspection Team | issue/review cards, Negative Reviews |
+
+**Row-level data access** (`hotel_maintenance/permissions.py`,
+`permission_query_conditions` + `has_permission`):
+
+- **Hotel GM** sees only records of the properties they manage
+  (`Property.gm == user`) across Property/Building/Room/Asset/Issue/Work
+  Order/Negative Review — so their number cards and lists are auto-scoped.
+- **Maintenance Employee** sees only Work Orders assigned to themselves.
+- **Director / Senior General Manager / System Manager** are unrestricted.
+
+**Module isolation** — a `Module Profile` ("Hotel Maintenance Limited") blocks
+every module except *Hotel Maintenance*; it is assigned to limited roles (GM,
+Maintenance Employee, Inspection Team) so their desk is focused and they no
+longer see Build/Users/Website/Integrations. Supervisory roles keep full
+access. (Assigned to the demo users automatically by the seed script.)
 
 ---
 

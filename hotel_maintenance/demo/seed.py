@@ -90,7 +90,15 @@ def clear_demo_data(verbose=True):
 # Builders
 # ---------------------------------------------------------------------------
 
+# Roles that get the focused "Hotel Maintenance Limited" module profile so their
+# desk only shows the Hotel Maintenance module (no Build/Users/Website/etc.).
+LIMITED_ROLES = {"Hotel GM", "Maintenance Employee", "Inspection Team"}
+
+
 def _create_users():
+	from hotel_maintenance.setup.workspaces import LIMITED_MODULE_PROFILE
+
+	has_profile = frappe.db.exists("Module Profile", LIMITED_MODULE_PROFILE)
 	created = {}
 	for u in DEMO_USERS:
 		if frappe.db.exists("User", u["email"]):
@@ -103,7 +111,10 @@ def _create_users():
 			doc.send_welcome_email = 0
 			doc.new_password = DEMO_PASSWORD
 			doc.append("roles", {"role": u["role"]})
-			doc.insert(ignore_permissions=True)
+		# Limited roles get a focused desk via the module profile.
+		if has_profile and u["role"] in LIMITED_ROLES:
+			doc.module_profile = LIMITED_MODULE_PROFILE
+		doc.save(ignore_permissions=True)
 		created[u["email"]] = doc.name
 	return created
 

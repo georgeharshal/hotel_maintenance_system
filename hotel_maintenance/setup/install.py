@@ -89,10 +89,12 @@ PERMISSION_MATRIX = {
 
 def after_install():
 	setup_roles_and_permissions()
+	_setup_workspaces()
 
 
 def after_migrate():
 	setup_roles_and_permissions()
+	_setup_workspaces()
 
 
 def setup_roles_and_permissions():
@@ -100,6 +102,13 @@ def setup_roles_and_permissions():
 	create_roles()
 	apply_permissions()
 	frappe.db.commit()
+
+
+def _setup_workspaces():
+	"""Create role-based workspaces, number cards, charts and module profile."""
+	from hotel_maintenance.setup.workspaces import setup_role_workspaces
+
+	setup_role_workspaces()
 
 
 def create_roles():
