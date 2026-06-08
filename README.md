@@ -41,8 +41,18 @@ bench build --app hotel_maintenance
 ```
 
 The app installs without errors via `bench get-app` and `bench install-app`.
-The `after_install` / `after_migrate` hooks create the custom roles and apply
-the full permission matrix automatically (idempotent — safe to re-run).
+The custom **roles**, **role profiles** and **DocType permissions** are shipped
+as **fixtures** (`hotel_maintenance/fixtures/`, filtered to only this app's
+records) and imported automatically on install/migrate. The `after_install` /
+`after_migrate` hooks additionally create the roles/role profiles and the
+role-based workspaces idempotently. The permission matrix lives, fully readable,
+in `setup/install.py` (`apply_permissions()`), which can be run manually to
+re-seed permissions on a site without fixtures. To re-export the fixtures after
+a change:
+
+```bash
+bench --site <your-site> export-fixtures --app hotel_maintenance
+```
 
 To enable the scheduled job in development:
 

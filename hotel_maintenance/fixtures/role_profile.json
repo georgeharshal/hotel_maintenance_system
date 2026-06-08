@@ -1,0 +1,62 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2026-06-08 20:20:49.483506",
+  "name": "Hotel GM",
+  "role_profile": "Hotel GM",
+  "roles": [
+   {
+    "role": "Hotel GM"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2026-06-08 20:20:49.492930",
+  "name": "Senior General Manager",
+  "role_profile": "Senior General Manager",
+  "roles": [
+   {
+    "role": "Senior General Manager"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2026-06-08 20:20:49.497975",
+  "name": "Director",
+  "role_profile": "Director",
+  "roles": [
+   {
+    "role": "Director"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2026-06-08 20:20:49.501896",
+  "name": "Maintenance Employee",
+  "role_profile": "Maintenance Employee",
+  "roles": [
+   {
+    "role": "Maintenance Employee"
+   }
+  ]
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Role Profile",
+  "modified": "2026-06-08 20:20:49.505148",
+  "name": "Inspection Team",
+  "role_profile": "Inspection Team",
+  "roles": [
+   {
+    "role": "Inspection Team"
+   }
+  ]
+ }
+]

@@ -98,10 +98,32 @@ def after_migrate():
 
 
 def setup_roles_and_permissions():
-	"""Create the custom roles and apply the permission matrix idempotently."""
+	"""Create the custom roles and role profiles idempotently.
+
+	The roles, role profiles and DocType permissions (Custom DocPerm) are
+	version-controlled as fixtures (see the ``fixtures`` hook) and imported
+	automatically on install/migrate. ``apply_permissions()`` below remains the
+	canonical, readable definition of the permission matrix and can be called
+	manually to (re)seed permissions on a site that has no fixtures yet.
+	"""
 	create_roles()
-	apply_permissions()
+	create_role_profiles()
 	frappe.db.commit()
+
+
+# Role Profiles bundle a persona's role for quick assignment to users.
+ROLE_PROFILES = {role: [role] for role in CUSTOM_ROLES}
+
+
+def create_role_profiles():
+	for profile_name, roles in ROLE_PROFILES.items():
+		if frappe.db.exists("Role Profile", profile_name):
+			continue
+		profile = frappe.new_doc("Role Profile")
+		profile.role_profile = profile_name
+		for role in roles:
+			profile.append("roles", {"role": role})
+		profile.insert(ignore_permissions=True)
 
 
 def _setup_workspaces():

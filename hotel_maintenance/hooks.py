@@ -298,3 +298,21 @@ has_permission = {
 }
 
 
+# Task 5 - version-control ONLY this app's roles, role profiles and DocType
+# permissions as fixtures (filtered so Frappe's standard records are excluded).
+# Exported with: bench --site <site> export-fixtures --app hotel_maintenance
+_HM_ROLES = [
+	"Hotel GM",
+	"Senior General Manager",
+	"Director",
+	"Maintenance Employee",
+	"Inspection Team",
+]
+
+fixtures = [
+	{"dt": "Role", "filters": [["name", "in", _HM_ROLES]]},
+	{"dt": "Role Profile", "filters": [["name", "in", _HM_ROLES]]},
+	{"dt": "Custom DocPerm", "filters": [["role", "in", _HM_ROLES]]},
+]
+
+
