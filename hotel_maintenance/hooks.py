@@ -256,3 +256,31 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+
+# ===========================================================================
+# Hotel Maintenance configuration
+# ===========================================================================
+
+# Task 5 - create/refresh custom roles & permissions on install and migrate.
+after_install = "hotel_maintenance.setup.install.after_install"
+after_migrate = "hotel_maintenance.setup.install.after_migrate"
+
+# Task 4 - scheduled job: auto-escalate overdue work orders daily at 09:00.
+scheduler_events = {
+	"cron": {
+		"0 9 * * *": [
+			"hotel_maintenance.hotel_maintenance.tasks.auto_escalate_overdue_work_orders",
+		],
+	},
+}
+
+# Task 5 - row-level access for Maintenance Employees (assigned-to-self only).
+permission_query_conditions = {
+	"Maintenance Work Order": "hotel_maintenance.permissions.work_order_query_conditions",
+}
+
+has_permission = {
+	"Maintenance Work Order": "hotel_maintenance.permissions.work_order_has_permission",
+}
+
+
